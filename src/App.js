@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <ArrowPlaceholders />
-        <audio controls autoPlay>
+        <audio autoPlay onPlay={() => console.log(performance.now())}>
           <source src={Song} type="audio/mpeg" />
         </audio>
       </div>

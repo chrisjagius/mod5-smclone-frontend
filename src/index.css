@@ -40,3 +40,15 @@ body {
   animation-name: example;
   animation-duration: 20ms infinite;
 }
+
+.arrow-left {
+  transform: rotate(90deg);
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+}
+
+.arrow-right {
+  transform: rotate(270deg);
+}
