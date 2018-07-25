@@ -51,7 +51,7 @@ class ArrowLine extends React.Component {
 }
 
 ArrowLine.propTypes = {
-  arrowLine: PropTypes.array.isRequired,
+  arrowLine: PropTypes.string.isRequired,
   noteValue: PropTypes.number.isRequired
 };
 
