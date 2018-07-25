@@ -8,6 +8,21 @@ import Song from './songs/A/A.mp3';
 import SongJSON from './songs/A/A.ref.json';
 
 class App extends Component {
+  componentDidMount() {
+    const songScroll = [
+      { transform: 'translateY(0px)' },
+      { transform: 'translateY(-4192px)' }
+    ];
+
+    const songScrollTiming = {
+      duration: 10500
+    };
+
+    const songSheetDiv = document.querySelector('.song-sheet');
+
+    songSheetDiv.animate(songScroll, songScrollTiming);
+  }
+
   render() {
     return (
       <div className="App">

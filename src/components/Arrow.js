@@ -6,9 +6,9 @@ const Arrow = (props) => {
 
   const fillColor = () => {
     switch (props.noteValue) {
-    case '4':
+    case 4:
       return '#ff0000';
-    case '8':
+    case 8:
       return '#0000ff';
     default:
       return '#ff0000';
@@ -29,7 +29,7 @@ const Arrow = (props) => {
 
 Arrow.propTypes = {
   direction: PropTypes.string,
-  noteValue: PropTypes.string
+  noteValue: PropTypes.number
 };
 
 export default Arrow;

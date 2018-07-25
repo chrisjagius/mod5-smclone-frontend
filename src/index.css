@@ -13,7 +13,6 @@ body {
 #arrow-placeholder-container {
   display: grid;
   grid-template-columns: 1fr repeat(4, 10%) 1fr;
-  grid-template-rows: repeat(5, 20%);
 }
 
 #arrow-placeholder-div-left {
@@ -32,6 +31,16 @@ body {
   transform: rotate(270deg);
 }
 
+.arrow-div-left {
+  grid-column: 2;
+}
+
+.arrow-row {
+  display: grid;
+  grid-template-columns: 1fr repeat(4, 10%) 1fr;
+  min-height: 131px;
+}
+
 .arrow-left {
   transform: rotate(90deg);
 }
@@ -42,4 +51,10 @@ body {
 
 .arrow-right {
   transform: rotate(270deg);
+}
+
+.arrow-div-eighth {
+  position: relative;
+  margin-top: -65px;
+  margin-bottom: -65px;
 }
