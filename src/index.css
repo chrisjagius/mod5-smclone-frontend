@@ -1,7 +1,3 @@
-@keyframes example {
-    50%   {fill: lightgray;}
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -16,8 +12,8 @@ body {
 
 #arrow-placeholder-container {
   display: grid;
-  grid-template-columns: 20% 10% 10% 10% 10% 20%;
-  grid-template-rows: 20% 20% 20% 20% 20%;
+  grid-template-columns: 1fr repeat(4, 10%) 1fr;
+  grid-template-rows: repeat(5, 20%);
 }
 
 #arrow-placeholder-div-left {
@@ -34,11 +30,6 @@ body {
 
 #arrow-placeholder-right {
   transform: rotate(270deg);
-}
-
-.arrow-placeholder-part {
-  animation-name: example;
-  animation-duration: 20ms infinite;
 }
 
 .arrow-left {
