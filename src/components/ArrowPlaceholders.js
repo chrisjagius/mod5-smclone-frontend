@@ -2,8 +2,8 @@ import React from 'react';
 
 const ArrowPlaceholders = () => {
   return (
-    <div id="arrow-placeholder-container" width = "100%" height = "400px">
-      <div id="arrow-placeholder-div-left" width = "50%" height = "400px" styles="float:left">
+    <div id="arrow-placeholder-container" width = "100%">
+      <div id="arrow-placeholder-div-left" width = "50%" styles="float:left">
         <svg id="arrow-placeholder-left" version="1.1" viewBox="0.0 0.0 512.0 512.0" fill="none" stroke="none" strokeLinecap="square" strokeMiterlimit="10">
           <clipPath id="p.0"><path d="m0 0l512.0 0l0 512.0l-512.0 0l0 -512.0z" clipRule="nonzero"/></clipPath>
           <g clipPath="url(#p.0)">

@@ -1,5 +1,7 @@
+import SongJSON from '../songs/A/A.ref.json';
+
 const initialState = {
-  message: 'It\'s easy to integrate React and Redux, isn\'t it?',
+  currentSong: SongJSON
 };
 
 function reducer(state = initialState) {

@@ -46,7 +46,6 @@ class SongSheet extends React.Component {
   }
 
   render() {
-    console.log(this.props.songData);
     return (
       <div className='song-sheet'>
         {this.buildSongSheet()}

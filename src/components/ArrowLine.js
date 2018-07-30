@@ -5,8 +5,8 @@ import Arrow from './Arrow';
 
 class ArrowLine extends React.Component {
   render() {
-    console.log(this.props.noteValue);
-    console.log(this.props.arrowLine);
+    // console.log(this.props.noteValue);
+    // console.log(this.props.arrowLine);
 
     const timingClassName = () => {
       switch (this.props.noteValue) {

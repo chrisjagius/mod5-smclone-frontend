@@ -5,17 +5,59 @@ import ArrowPlaceholders from './components/ArrowPlaceholders';
 import SongSheet from './components/SongSheet';
 
 import Song from './songs/A/A.mp3';
-import SongJSON from './songs/A/A.ref.json';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      songStartTime: 0,
+      arrowHeight: 100
+    };
+
+    this.handlePlay = () => {
+      setTimeout(() => this.animateSongSheet(), parseInt(this.props.currentSong.offset, 10));
+
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          songStartTime: performance.now()
+        };
+      });
+    };
+  }
+
   componentDidMount() {
+    const placeholderDiv = document.querySelector('#arrow-placeholder-container');
+    const placeholderHeight = placeholderDiv.scrollHeight;
+
+
+    const audio = document.querySelector('audio');
+    audio.play();
+  }
+
+  animatePlaceholder() {
+
+  }
+
+  animateSongSheet() {
+    const beats = this.props.currentSong.notes[0].noteData.length * 4;
+    const duration = parseInt(this.props.currentSong.offset, 10) + ((beats / parseInt(this.props.currentSong.bpms['0'], 10)) * 60000);
+
+    const arrowRow = document.querySelector('.arrow-row');
+    const rowHeight = arrowRow.scrollHeight;
+
+    const beginTransform = rowHeight * -1;
+    const endTransform = beginTransform + (beginTransform * (beats - 1));
+
     const songScroll = [
-      { transform: 'translateY(0px)' },
-      { transform: 'translateY(-4192px)' }
+      { transform: `translateY(${beginTransform}px)` },
+      { transform: `translateY(${endTransform}px)` }
     ];
 
     const songScrollTiming = {
-      duration: 10500
+      duration: duration,
+      fill: 'forwards'
     };
 
     const songSheetDiv = document.querySelector('.song-sheet');
@@ -27,8 +69,8 @@ class App extends Component {
     return (
       <div className="App">
         <ArrowPlaceholders />
-        <SongSheet songData={SongJSON} />
-        <audio autoPlay onPlay={() => console.log(performance.now())}>
+        <SongSheet songData={this.props.currentSong} />
+        <audio onPlay={this.handlePlay}>
           <source src={Song} type="audio/mpeg" />
         </audio>
       </div>
@@ -37,7 +79,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  message: PropTypes.string.isRequired,
+  currentSong: PropTypes.object
 };
 
 export default App;
