@@ -10,7 +10,7 @@ class ArrowLine extends React.Component {
     // console.log(this.props.arrowLine);
     console.log(this.props.beatsElapsed);
 
-    // const triggerableTime =
+    // const triggerableTime = 
 
     const timingClassName = () => {
       switch (this.props.noteValue) {

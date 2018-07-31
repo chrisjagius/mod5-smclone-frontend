@@ -14,12 +14,12 @@ function reducer(state = initialState, action) {
       ...state,
       currentTime: action.currentTime
     };
-  case 'UPDATE_SONG_START':
+  case 'SET_SONG_START':
     return {
       ...state,
       songStartTime: action.songStartTime
     };
-  case 'UPDATE_ARROW_HEIGHT':
+  case 'SET_ARROW_HEIGHT':
     return {
       ...state,
       arrowHeight: action.arrowHeight

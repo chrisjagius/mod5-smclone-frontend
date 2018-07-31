@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import ArrowPlaceholders from './components/ArrowPlaceholders';
 import SongSheet from './components/SongSheet';
+import * as actions from './actions';
 
 import Song from './songs/A/A.mp3';
 
@@ -10,26 +12,17 @@ class App extends Component {
   constructor() {
     super();
 
-    this.state = {
-      songStartTime: 0,
-      arrowHeight: 100
-    };
-
     this.handlePlay = () => {
       setTimeout(() => this.animateSongSheet(), parseInt(this.props.currentSong.offset, 10));
 
-      this.setState((prevState) => {
-        return {
-          ...prevState,
-          songStartTime: performance.now()
-        };
-      });
+      this.props.setSongStartTime(performance.now());
     };
   }
 
   componentDidMount() {
     const placeholderDiv = document.querySelector('#arrow-placeholder-container');
     const placeholderHeight = placeholderDiv.scrollHeight;
+    this.props.setArrowHeight(placeholderHeight);
 
 
     const audio = document.querySelector('audio');
@@ -79,7 +72,14 @@ class App extends Component {
 }
 
 App.propTypes = {
-  currentSong: PropTypes.object
+  currentSong: PropTypes.object,
+  handlePlay: PropTypes.func,
+  setSongStartTime: PropTypes.func,
+  setArrowHeight: PropTypes.func
 };
 
-export default App;
+const mapStateToProps = state => ({
+  currentSong: state.currentSong,
+});
+
+export default connect(mapStateToProps, actions)(App);

@@ -32,7 +32,10 @@ class SongSheet extends React.Component {
 
     return measure.map((arrowLine, idx) => {
       const noteValue = this.getNoteValue(this.reduceDenominator(idx, timeDivision));
-      const currentMeasureBeatsElapsed = (4 / timeDivision) * idx;
+      const beatIncrement = 4 / timeDivision;
+
+      const currentMeasureBeatsElapsed = beatIncrement * idx;
+      // const currentBeat = currentMeasureBeatsElapsed + beatIncrement;
       const totalBeatsElapsed = measureBeatsElapsed + currentMeasureBeatsElapsed;
 
       return this.buildLine(arrowLine, noteValue, totalBeatsElapsed);

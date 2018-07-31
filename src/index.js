@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+
 import './index.css';
-import Game from './containers/Game';
+import App from './App';
 import reducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -16,7 +17,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Game />
+    <App />
   </Provider>,
   document.getElementById('root')
 );
@@ -27,7 +28,7 @@ ReactDOM.render(
   }
 
   function main(tFrame) {
-    Game.stopMain = window.requestAnimationFrame(main);
+    App.stopMain = window.requestAnimationFrame(main);
 
     store.dispatch(update(tFrame)); //Call your update method. In our case, we give it rAF's timestamp.
   }
