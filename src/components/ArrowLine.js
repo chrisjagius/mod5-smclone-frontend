@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Arrow from './Arrow';
 
@@ -7,6 +8,9 @@ class ArrowLine extends React.Component {
   render() {
     // console.log(this.props.noteValue);
     // console.log(this.props.arrowLine);
+    console.log(this.props.beatsElapsed);
+
+    // const triggerableTime =
 
     const timingClassName = () => {
       switch (this.props.noteValue) {
@@ -52,7 +56,15 @@ class ArrowLine extends React.Component {
 
 ArrowLine.propTypes = {
   arrowLine: PropTypes.string.isRequired,
-  noteValue: PropTypes.number.isRequired
+  noteValue: PropTypes.number.isRequired,
+  beatsElapsed: PropTypes.number.isRequired
 };
 
-export default ArrowLine;
+const mapStateToProps = (state) => {
+  return {
+    currentSong: state.currentSong,
+    songStartTime: state.songStartTime
+  };
+};
+
+export default connect(mapStateToProps)(ArrowLine);

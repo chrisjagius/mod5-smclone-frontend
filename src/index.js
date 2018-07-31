@@ -21,4 +21,18 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+(() => {
+  function update(tFrame) {
+    return { type: 'UPDATE_TIME', currentTime: tFrame };
+  }
+
+  function main(tFrame) {
+    Game.stopMain = window.requestAnimationFrame(main);
+
+    store.dispatch(update(tFrame)); //Call your update method. In our case, we give it rAF's timestamp.
+  }
+
+  main(); // Start the cycle
+})();
+
 registerServiceWorker();

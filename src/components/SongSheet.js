@@ -21,27 +21,31 @@ class SongSheet extends React.Component {
     }
   }
 
-  buildLine(arrowLine, noteValue) {
+  buildLine(arrowLine, noteValue, totalBeatsElapsed) {
     return (
-      <ArrowLine arrowLine={arrowLine} noteValue={noteValue} />
+      <ArrowLine arrowLine={arrowLine} noteValue={noteValue} beatsElapsed={totalBeatsElapsed} />
     );
   }
 
-  buildMeasure(measure) {
+  buildMeasure(measure, measureBeatsElapsed) {
     const timeDivision = measure.length;
 
     return measure.map((arrowLine, idx) => {
       const noteValue = this.getNoteValue(this.reduceDenominator(idx, timeDivision));
+      const currentMeasureBeatsElapsed = (4 / timeDivision) * idx;
+      const totalBeatsElapsed = measureBeatsElapsed + currentMeasureBeatsElapsed;
 
-      return this.buildLine(arrowLine, noteValue);
+      return this.buildLine(arrowLine, noteValue, totalBeatsElapsed);
     });
   }
 
   buildSongSheet() {
     const noteData = this.props.songData.notes[0].noteData;
 
-    return noteData.map(measure => {
-      return this.buildMeasure(measure);
+    return noteData.map((measure, idx) => {
+      const measureBeatsElapsed = idx * 4;
+
+      return this.buildMeasure(measure, measureBeatsElapsed);
     });
   }
 
