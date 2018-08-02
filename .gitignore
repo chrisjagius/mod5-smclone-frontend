@@ -10,7 +10,7 @@
 /build
 
 # songs
-/songs
+/src/songs
 
 # misc
 .DS_Store
