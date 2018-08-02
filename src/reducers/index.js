@@ -4,7 +4,8 @@ const initialState = {
   currentSong: SongJSON,
   currentTime: 0,
   songStartTime: 0,
-  arrowHeight: 100
+  arrowHeight: 100,
+  globalOffset: 1000
 };
 
 function reducer(state = initialState, action) {
@@ -15,6 +16,8 @@ function reducer(state = initialState, action) {
       currentTime: action.currentTime
     };
   case 'SET_SONG_START':
+    console.log(action.songStartTime);
+
     return {
       ...state,
       songStartTime: action.songStartTime

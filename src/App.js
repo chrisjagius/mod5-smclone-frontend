@@ -13,8 +13,8 @@ class App extends Component {
     super();
 
     this.handlePlay = () => {
-      setTimeout(() => this.animateSongSheet(), parseInt(this.props.currentSong.offset, 10));
-
+      // setTimeout(() => this.animateSongSheet(), parseInt(this.props.currentSong.offset, 10));
+      this.animateSongSheet();
       this.props.setSongStartTime(performance.now());
     };
   }
@@ -34,8 +34,12 @@ class App extends Component {
   }
 
   animateSongSheet() {
-    const beats = this.props.currentSong.notes[0].noteData.length * 4;
-    const duration = parseInt(this.props.currentSong.offset, 10) + ((beats / parseInt(this.props.currentSong.bpms['0'], 10)) * 60000);
+    const noteData = this.props.currentSong.notes[0].noteData;
+    const offset = parseInt(this.props.currentSong.offset, 10);
+    const bpm = parseInt(this.props.currentSong.bpms['0'], 10);
+
+    const beats = noteData.length * 4;
+    const duration = offset + ((beats / bpm) * 60000);
 
     const arrowRow = document.querySelector('.arrow-row');
     const rowHeight = arrowRow.scrollHeight;
@@ -49,6 +53,7 @@ class App extends Component {
     ];
 
     const songScrollTiming = {
+      delay: offset,
       duration: duration,
       fill: 'forwards'
     };
@@ -62,7 +67,7 @@ class App extends Component {
     return (
       <div className="App">
         <ArrowPlaceholders />
-        <SongSheet songData={this.props.currentSong} />
+        <SongSheet />
         <audio onPlay={this.handlePlay}>
           <source src={Song} type="audio/mpeg" />
         </audio>

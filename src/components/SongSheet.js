@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import ArrowLine from './ArrowLine';
 
@@ -22,8 +23,12 @@ class SongSheet extends React.Component {
   }
 
   buildLine(arrowLine, noteValue, totalBeatsElapsed) {
+    const bpm = parseInt(this.props.currentSong.bpms['0'], 10);
+    const offset = parseInt(this.props.currentSong.offset, 10);
+    const triggerTime = this.props.globalOffset + offset + ((totalBeatsElapsed / bpm) * 60000 + this.props.songStartTime);
+
     return (
-      <ArrowLine arrowLine={arrowLine} noteValue={noteValue} beatsElapsed={totalBeatsElapsed} />
+      <ArrowLine arrowLine={arrowLine} noteValue={noteValue} triggerTime={triggerTime} />
     );
   }
 
@@ -43,7 +48,7 @@ class SongSheet extends React.Component {
   }
 
   buildSongSheet() {
-    const noteData = this.props.songData.notes[0].noteData;
+    const noteData = this.props.currentSong.notes[0].noteData;
 
     return noteData.map((measure, idx) => {
       const measureBeatsElapsed = idx * 4;
@@ -62,7 +67,17 @@ class SongSheet extends React.Component {
 }
 
 SongSheet.propTypes = {
-  songData: PropTypes.object
+  currentSong: PropTypes.object,
+  songStartTime: PropTypes.number,
+  globalOffset: PropTypes.number
 };
 
-export default SongSheet;
+const mapStateToProps = (state) => {
+  return {
+    currentSong: state.currentSong,
+    songStartTime: state.songStartTime,
+    globalOffset: state.globalOffset
+  };
+};
+
+export default connect(mapStateToProps)(SongSheet);

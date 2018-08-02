@@ -8,9 +8,7 @@ class ArrowLine extends React.Component {
   render() {
     // console.log(this.props.noteValue);
     // console.log(this.props.arrowLine);
-    console.log(this.props.beatsElapsed);
-
-    // const triggerableTime = 
+    // console.log(this.props.beatsElapsed);
 
     const timingClassName = () => {
       switch (this.props.noteValue) {
@@ -23,29 +21,33 @@ class ArrowLine extends React.Component {
       }
     };
 
+    const visibility = this.props.triggerable ?
+      'hidden' :
+      'visible';
+
     return (
       <div className={`arrow-row ${timingClassName()}`} width="100%">
         <div className="arrow-div-left">
           {this.props.arrowLine[0] === '1' ?
-            <Arrow direction='left' noteValue={this.props.noteValue} /> :
+            <Arrow direction='left' noteValue={this.props.noteValue} visibility={visibility} /> :
             null
           }
         </div>
         <div>
           {this.props.arrowLine[1] === '1' ?
-            <Arrow direction='down' noteValue={this.props.noteValue} /> :
+            <Arrow direction='down' noteValue={this.props.noteValue} visibility={visibility} /> :
             null
           }
         </div>
         <div>
           {this.props.arrowLine[2] === '1' ?
-            <Arrow direction='up' noteValue={this.props.noteValue} /> :
+            <Arrow direction='up' noteValue={this.props.noteValue} visibility={visibility} /> :
             null
           }
         </div>
-        <div>
+        <div  >
           {this.props.arrowLine[3] === '1' ?
-            <Arrow direction='right' noteValue={this.props.noteValue} /> :
+            <Arrow direction='right' noteValue={this.props.noteValue} visibility={visibility} /> :
             null
           }
         </div>
@@ -57,13 +59,14 @@ class ArrowLine extends React.Component {
 ArrowLine.propTypes = {
   arrowLine: PropTypes.string.isRequired,
   noteValue: PropTypes.number.isRequired,
-  beatsElapsed: PropTypes.number.isRequired
+  triggerable: PropTypes.bool
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     currentSong: state.currentSong,
-    songStartTime: state.songStartTime
+    songStartTime: state.songStartTime,
+    triggerable: Math.abs(state.currentTime - ownProps.triggerTime) < 16.7
   };
 };
 

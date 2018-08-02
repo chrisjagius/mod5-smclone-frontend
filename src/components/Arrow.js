@@ -16,7 +16,7 @@ const Arrow = (props) => {
   };
 
   return (
-    <svg className={directionClass} version="1.1" viewBox="0.0 0.0 512.0 512.0" fill="none" stroke="none" strokeLinecap="square" strokeMiterlimit="10">
+    <svg visibility={props.visibility} className={directionClass} version="1.1" viewBox="0.0 0.0 512.0 512.0" fill="none" stroke="none" strokeLinecap="square" strokeMiterlimit="10">
       <clipPath id="p.0"><path d="m0 0l512.0 0l0 512.0l-512.0 0l0 -512.0z" clipRule="nonzero"/></clipPath>
       <g clipPath="url(#p.0)">
         <path fill="#000000" fillOpacity="0.0" d="m0 0l512.0 0l0 512.0l-512.0 0z" fillRule="evenodd"/>
@@ -29,7 +29,8 @@ const Arrow = (props) => {
 
 Arrow.propTypes = {
   direction: PropTypes.string,
-  noteValue: PropTypes.number
+  noteValue: PropTypes.number,
+  visibility: PropTypes.string
 };
 
 export default Arrow;
