@@ -6,7 +6,7 @@ import ArrowPlaceholders from './components/ArrowPlaceholders';
 import SongSheet from './components/SongSheet';
 import * as actions from './actions';
 
-import Song from './songs/A/A.mp3';
+import Song from './songs/Gamelan de Couple/Gamelan de Couple.mp3';
 
 class App extends Component {
   constructor() {

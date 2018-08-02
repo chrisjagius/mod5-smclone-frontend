@@ -27,10 +27,10 @@ ReactDOM.render(
     return { type: 'UPDATE_TIME', currentTime: tFrame };
   }
 
-  function main(tFrame) {
+  function main() {
     App.stopMain = window.requestAnimationFrame(main);
 
-    store.dispatch(update(tFrame)); //Call your update method. In our case, we give it rAF's timestamp.
+    store.dispatch(update(performance.now())); //Call your update method. In our case, we give it rAF's timestamp.
   }
 
   main(); // Start the cycle

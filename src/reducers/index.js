@@ -1,11 +1,11 @@
-import SongJSON from '../songs/A/A.ref.json';
+import SongJSON from '../songs/Gamelan de Couple/Gamelan de Couple.json';
 
 const initialState = {
   currentSong: SongJSON,
   currentTime: 0,
   songStartTime: 0,
   arrowHeight: 100,
-  globalOffset: 1000
+  globalOffset: 850
 };
 
 function reducer(state = initialState, action) {
